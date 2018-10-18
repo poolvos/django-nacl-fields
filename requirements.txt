@@ -1,2 +1,0 @@
-Django>=1.4
-python-keyczar==0.715
