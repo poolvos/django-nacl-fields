@@ -21,22 +21,28 @@ Getting Started
 ----------------
 
 .. code:: shell
-	~ pip install django-nacl-fields
+
+	    ~ pip install django-nacl-fields
 
 
 Create a key to be used for encryption.
+
 .. code:: shell
-	~ python manage.py createkey
-	# put the following line in your settings.py:
-	NACL_FIELDS_KEY = 'cGa9QJDY/FJhbITXHnrIqlgyeLDS04/WqWtgqPEIU4A='
+
+	    ~ python manage.py createkey
+	    # put the following line in your settings.py:
+	    NACL_FIELDS_KEY = 'cGa9QJDY/FJhbITXHnrIqlgyeLDS04/WqWtgqPEIU4A='
 
 
 In your ``settings.py`` (or append it automatically after generation using the ``-f`` flag)
+
 .. code:: python
+
 	NACL_FIELDS_KEY = 'cGa9QJDY/FJhbITXHnrIqlgyeLDS04/WqWtgqPEIU4A='
 
 
 Then, in your ``models.py``
+
 .. code:: python
 
 	from django.db import models
@@ -70,14 +76,14 @@ Encrypt Your Own Fields
 -----------------------
 
 Making new fields can be done by using the build-in NaClFieldMixin:
+
 .. code:: python
 
 	from django.db import models
 	from fields import NaClFieldMixin
 
-
-class EncryptedIPAddressField(NaClFieldMixin, models.IPAddressField):
-	pass
+	class EncryptedIPAddressField(NaClFieldMixin, models.IPAddressField):
+		pass
 
 
 Please report any issues you encounter when trying this.
