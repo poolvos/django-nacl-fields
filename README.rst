@@ -2,11 +2,15 @@
 Django NaCl Encrypted Fields
 ============================
 
-|Build Status|
+|Build Status| |Docs Status|
 
 .. |Build Status| image:: https://img.shields.io/travis/poolvos/django-nacl-fields.svg?style=for-the-badge
    :target: https://travis-ci.org/poolvos/django-nacl-fields
    :alt: Build Status
+
+.. |Docs Status| image:: https://img.shields.io/readthedocs/django-nacl-fields/latest.svg?style=for-the-badge
+   :target: https://django-nacl-fields.readthedocs.io/en/latest/
+   :alt: Read the Docs (version)
 
 This is a collection of Django Model Field classes that are encrypted using PyNaCl. This package is largely based on `django-encrypted-fields <https://github.com/defrex/django-encrypted-fields>`_, which makes use of the outdated Keyczar library to encrypt fields. Besides that, it is inspired by `django-fernet-field <https://github.com/orcasgit/django-fernet-fields>`_.
 
