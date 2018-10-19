@@ -1,16 +1,42 @@
 language: python
-python:
-  - "3.5"
-  - "3.5-dev"  # 3.5 development branch
-  - "3.6"
-  - "3.6-dev"  # 3.6 development branch
-env:
-  - DJANGO_VERSION=2.0.9
-  - DJANGO_VERSION=2.1.2
+
+matrix:
+  include:
+    - python: 3.5
+      env: DJANGO_VERSION=2.0.9
+    - python: 3.5
+      env: DJANGO_VERSION=2.1.2
+    - python: 3.5-dev
+      env: DJANGO_VERSION=2.0.9
+    - python: 3.5-dev
+      env: DJANGO_VERSION=2.1.2
+    - python: 3.6
+      env: DJANGO_VERSION=2.0.9
+    - python: 3.6
+      env: DJANGO_VERSION=2.1.2 LATEST=true
+    - python: 3.6-dev
+      env: DJANGO_VERSION=2.0.9
+    - python: 3.6-dev
+      env: DJANGO_VERSION=2.1.2
+
 # command to install dependencies
 install:
   - pip install -q Django==$DJANGO_VERSION
   - python setup.py -q install
+
 # command to run tests
 script:
   - python manage.py test
+
+deploy:
+  provider: pypi
+  user: poolvos
+  password:
+    secure: "NqZg2YkXwgICnn9ArnoPlf9lFivwy1jWYtlId0nglv7fbmCi4L+jc31IJ3m1UZPyZLyoLljGu+vVT7Bqe2wpe0aRBM8o2eM/GVkKkm5wdhbFzYjWhf60G2HMJuGcDN7hQQ9EcfVW3mcBnAb6BvBKqDaN7j98HdeJGuCxdtIDuxWdQn4S88ioBXa2goDoaecNBkNADWU3OlYoNEW87u0lztewQyyFsw2M9O2aCb69pgYfH9+/sp3oXwoDvE5G1Z8l00eoWXzzOcI1DI+loQyWBk+on9AaLzDXf8iOSb4QO4U+P3aHab/DhsjJu2VtYM/2GR2DC5GEGwGMT4hewn3h5GYe3VxFk6Wk4O2DyXEWGEQ2p6JIyHb7uwdubUYajbaPIyUK6BXoPBUXgcLcMqMBA58oPuJ1izKmwymoZicRjZ1JwsTUbLcnnXnDRu0f5XmMMf+a4VEzdi3/oXjCSuUq3id+eVr/nMEfPlZ5++PdMhjykXaArwJ7lYcHaCpTC0brZRoCy0SCx+qCfprNzu1wN3QVStrqRkAF6wuEUgUKLBxEx+/tnuNXUAYPJNNx0eu9cytNFA1IU9kSNsZDxBeQXY+lE5g6F6Gd+NhD0syNN+ACoQTq5/bg+xV5kF3YEbvUHb6ovL1LzE7557Vc6gnpOwYdMMfYNAtva5vUSAGVOf8="
+  on:
+    # Only build for tagged commits
+    repo: poolvos/django-nacl-fields
+    tags: true
+    branch: master
+    condition: $LATEST = true
+
