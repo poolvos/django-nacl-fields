@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from fields.fields import (
+from nacl_encrypted_fields.fields import (
     NaClBooleanField,
     NaClCharField,
     NaClDateField,

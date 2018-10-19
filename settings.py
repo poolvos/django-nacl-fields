@@ -11,18 +11,18 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
-    },
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': ':memory:',
+	},
 }
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3$+$r-(cl%@4b%id4-^b(=dnf=d71q-+rxus(b2qqm-rt28(w#'
 
 INSTALLED_APPS = [
-    'fields',
-    'tests',
+	'nacl_encrypted_fields',
+	'tests',
 ]
 
 MIDDLEWARE_CLASSES = []
