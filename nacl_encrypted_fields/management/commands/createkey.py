@@ -1,6 +1,6 @@
 
 from django.core.management.base import BaseCommand
-from fields.backends import NaClWrapper
+from nacl_encrypted_fields.backends import NaClWrapper
 
 
 class Command(BaseCommand):

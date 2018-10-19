@@ -50,7 +50,7 @@ Then, in your ``models.py``
 .. code:: python
 
 	from django.db import models
-	from fields import NaClTextField
+	from nacl_encrypted_fields import NaClTextField
 
 
 	class MyModel(models.Model):
@@ -84,7 +84,7 @@ Making new fields can be done by using the build-in NaClFieldMixin:
 .. code:: python
 
 	from django.db import models
-	from fields import NaClFieldMixin
+	from nacl_encrypted_fields import NaClFieldMixin
 
 	class EncryptedIPAddressField(NaClFieldMixin, models.IPAddressField):
 		pass

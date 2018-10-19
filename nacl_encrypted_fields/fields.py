@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.utils.functional import cached_property
 
-from fields.backends.naclwrapper import NaClWrapper
+from nacl_encrypted_fields.backends.naclwrapper import NaClWrapper
 
 
 class NaClFieldMixin(object):
