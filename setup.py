@@ -30,6 +30,10 @@ setup(
     version=find_version('fields', '__init__.py'),
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        'Django>=2.0',
+        'PyNaCl>=1.3.0',
+    ],
     license='Apache License',
     description=(
         'This is a collection of Django Model Field classes that are encrypted'
