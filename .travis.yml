@@ -28,7 +28,7 @@ install:
 # command to run tests
 script:
   - python manage.py test
-  - flake8 --ignore E501 # Ignore line length (E501)
+  - flake8 --exclude .git,pycache,docs/conf.py,build,dist --ignore E501 # Ignore line length (E501)
 
 deploy:
   provider: pypi

@@ -1,1 +1,1 @@
-from fields.backends.naclwrapper import NaClWrapper
+from fields.backends.naclwrapper import NaClWrapper  # noqa: F401
