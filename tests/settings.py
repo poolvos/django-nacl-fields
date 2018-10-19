@@ -21,7 +21,7 @@ DATABASES = {
 SECRET_KEY = '3$+$r-(cl%@4b%id4-^b(=dnf=d71q-+rxus(b2qqm-rt28(w#'
 
 INSTALLED_APPS = [
-    'fields',
+    'nacl_encrypted_fields',
     'tests',
 ]
 

@@ -12,8 +12,7 @@ def read(*parts):
 
 def find_version(*file_paths):
     version_file = read(*file_paths)
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
-                              version_file, re.M)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
     if version_match:
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
@@ -26,9 +25,9 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django_nacl_fields',
-    version=find_version('fields', '__init__.py'),
-    packages=find_packages(),
+    name='django-nacl-fields',
+    version=find_version('nacl_encrypted_fields', '__init__.py'),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     install_requires=[
         'Django>=2.0',
