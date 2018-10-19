@@ -22,11 +22,13 @@ matrix:
 # command to install dependencies
 install:
   - pip install -q Django==$DJANGO_VERSION
+  - pip install flake8
   - python setup.py -q install
 
 # command to run tests
 script:
   - python manage.py test
+  - flake8 --exclude .git,pycache,docs/conf.py,build,dist --ignore E501 # Ignore line length (E501)
 
 deploy:
   provider: pypi
