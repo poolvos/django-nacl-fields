@@ -7,17 +7,19 @@ matrix:
     - python: 3.5
       env: DJANGO_VERSION=2.1.2
     - python: 3.5-dev
-      env: DJANGO_VERSION=2.0.9
+      env: DJANGO_VERSION=2.0.9 DEV=true
     - python: 3.5-dev
-      env: DJANGO_VERSION=2.1.2
+      env: DJANGO_VERSION=2.1.2 DEV=true
     - python: 3.6
       env: DJANGO_VERSION=2.0.9
     - python: 3.6
       env: DJANGO_VERSION=2.1.2 LATEST=true
     - python: 3.6-dev
-      env: DJANGO_VERSION=2.0.9
+      env: DJANGO_VERSION=2.0.9 DEV=true
     - python: 3.6-dev
-      env: DJANGO_VERSION=2.1.2
+      env: DJANGO_VERSION=2.1.2 DEV=true
+  allow_failures:
+    - env: DEV=true
 
 # command to install dependencies
 install:
