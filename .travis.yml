@@ -40,3 +40,6 @@ deploy:
     branch: master
     condition: $LATEST = true
 
+branches:
+  only:
+    - master
