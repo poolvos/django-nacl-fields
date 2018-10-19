@@ -22,7 +22,7 @@ def find_version(*file_paths):
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
 
-# allow setup.py to be run from any path
+# Allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
@@ -40,13 +40,15 @@ setup(
         ' using PyNaCl.'
     ),
     long_description=README,
-    url='https://githhub.com/poolvos/django-nacl-fields',
+    url='https://github.com/poolvos/django-nacl-fields',
     author='Poolvos B.V.',
     author_email='info@poolvos.nl',
     classifiers=[
-        'Development Status :: 1 - Planning',
+        # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 2.0',
         'Framework :: Django :: 2.1',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
