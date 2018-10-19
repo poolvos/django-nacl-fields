@@ -28,7 +28,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
 	name='django-nacl-fields',
 	version=find_version('nacl_encrypted_fields', '__init__.py'),
-	packages=find_packages(),
+	packages=find_packages(exclude=['tests']),
 	include_package_data=True,
 	install_requires=[
 		'Django>=2.0',
