@@ -8,12 +8,10 @@ import base64
 # and decrypt(). NOTE: do not use this in production.
 class TestCryptoWrapper(CryptoWrapper):
     def __init__(self, keydata, *args, **kwargs):
-        self.key = base64.b64decode(keydata)
+        self.key = base64.b85decode(keydata)
 
     def encrypt(self, plaintext):
-        enc = bytes([ord(itr) ^ self.key[idx % len(self.key)] for idx, itr in enumerate(plaintext)])
-        return base64.b64encode(enc).decode()
+        return bytes([itr ^ self.key[idx % len(self.key)] for idx, itr in enumerate(plaintext)])
 
     def decrypt(self, ciphertext):
-        enc = base64.b64decode(ciphertext.encode())
-        return ''.join(chr(itr ^ self.key[idx % len(self.key)]) for idx, itr in enumerate(enc))
+        return ''.join(chr(itr ^ self.key[idx % len(self.key)]) for idx, itr in enumerate(ciphertext))

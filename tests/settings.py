@@ -27,4 +27,4 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = []
 
-NACL_FIELDS_KEY = 'nrlrk1VlTEcjfKyubeTdYzZQwi2wuZN8YlyLbzO0Jgg='
+NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'

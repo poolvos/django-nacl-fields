@@ -1,4 +1,3 @@
-
 import re
 
 from django.db import connection
@@ -26,7 +25,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('custom_crypto_char', model.id)
 
         self.assertNotEqual(plaintext, ciphertext)
-        self.assertTrue('test' not in ciphertext)
+        self.assertTrue('test'.encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.custom_crypto_char, plaintext)
@@ -41,7 +40,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('char', model.id)
 
         self.assertNotEqual(plaintext, ciphertext)
-        self.assertTrue('test' not in ciphertext)
+        self.assertTrue('test'.encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.char, plaintext)
@@ -56,7 +55,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('char', model.id)
 
         self.assertNotEqual(plaintext, ciphertext)
-        self.assertTrue('test' not in ciphertext)
+        self.assertTrue('test'.encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.char, plaintext)
@@ -71,7 +70,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('text', model.id)
 
         self.assertNotEqual(plaintext, ciphertext)
-        self.assertTrue('test' not in ciphertext)
+        self.assertTrue('test'.encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.text, plaintext)
@@ -86,7 +85,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('datetime', model.id)
 
         # Django's date serialization format
-        self.assertTrue(re.search('^\d\d\d\d-\d\d-\d\d', ciphertext) is None)
+        self.assertTrue(re.search(b'^\d\d\d\d-\d\d-\d\d', ciphertext) is None)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.datetime, plaindate)
@@ -144,7 +143,7 @@ class TestFields(TestCase):
         ciphertext = self.get_db_value('email', model.id)
 
         self.assertNotEqual(plaintext, ciphertext)
-        self.assertTrue('test' not in ciphertext)
+        self.assertTrue('test'.encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.email, plaintext)
