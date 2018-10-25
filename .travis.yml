@@ -18,6 +18,10 @@ matrix:
       env: DJANGO_VERSION=2.0.9 DEV=true
     - python: 3.6-dev
       env: DJANGO_VERSION=2.1.2 DEV=true
+    - python: 3.7-dev
+      env: DJANGO_VERSION=2.0.9 DEV=true
+    - python: 3.7-dev
+      env: DJANGO_VERSION=2.1.2 DEV=true
   allow_failures:
     - env: DEV=true
 
@@ -30,7 +34,8 @@ install:
 # command to run tests
 script:
   - python manage.py test
-  - flake8 --exclude .git,pycache,docs/conf.py,build,dist --ignore E501 # Ignore line length (E501)
+  # Ignore line length (E501)
+  - flake8 --exclude .git,pycache,docs/conf.py,build,dist --ignore E501
 
 deploy:
   provider: pypi
