@@ -1,4 +1,3 @@
-import re
 
 from django.db import connection
 from django.test import TestCase
@@ -84,8 +83,7 @@ class TestFields(TestCase):
 
         ciphertext = self.get_db_value('datetime', model.id)
 
-        # Django's date serialization format
-        self.assertTrue(re.search(b'^\d\d\d\d-\d\d-\d\d', ciphertext) is None)
+        self.assertTrue(plaindate.isoformat().encode() not in ciphertext)
 
         fresh_model = TestModel.objects.get(id=model.id)
         self.assertEqual(fresh_model.datetime, plaindate)

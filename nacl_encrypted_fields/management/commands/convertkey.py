@@ -1,6 +1,5 @@
 
 from django.core.management.base import BaseCommand
-from nacl_encrypted_fields.backends import NaClWrapper
 
 import base64
 
