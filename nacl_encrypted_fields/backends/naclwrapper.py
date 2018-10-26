@@ -18,20 +18,18 @@ class NaClWrapperException(ImproperlyConfigured):
 # object and allow for others to extend as needed.
 class NaClWrapper(CryptoWrapper):
     def __init__(self, keydata, apply_kdf=False, *args, **kwargs):
-        key = base64.b64decode(keydata)
+        key = base64.b85decode(keydata)
         if len(key) != nacl.secret.SecretBox.KEY_SIZE:
             raise NaClWrapperException('keysize must be equal to %d bytes', nacl.secret.SecretBox.KEY_SIZE)
 
         self.box = nacl.secret.SecretBox(key)
 
     def encrypt(self, plaintext):
-        ciphertext = self.box.encrypt(plaintext.encode())
-        return base64.b64encode(ciphertext).decode()
+        return self.box.encrypt(plaintext)
 
     def decrypt(self, ciphertext):
-        ciphertext = base64.b64decode(ciphertext.encode())
-        return self.box.decrypt(ciphertext).decode()
+        return self.box.decrypt(ciphertext)
 
     @staticmethod
     def createKey():
-        return base64.b64encode(nacl.utils.random(nacl.secret.SecretBox.KEY_SIZE)).decode()
+        return base64.b85encode(nacl.utils.random(nacl.secret.SecretBox.KEY_SIZE))

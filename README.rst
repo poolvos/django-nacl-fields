@@ -35,14 +35,14 @@ Create a key to be used for encryption.
 
 	    ~ python manage.py createkey
 	    # put the following line in your settings.py:
-	    NACL_FIELDS_KEY = 'cGa9QJDY/FJhbITXHnrIqlgyeLDS04/WqWtgqPEIU4A='
+	    NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
 
 
 In your ``settings.py`` (or append it automatically after generation using the ``-f`` flag)
 
 .. code:: python
 
-	NACL_FIELDS_KEY = 'cGa9QJDY/FJhbITXHnrIqlgyeLDS04/WqWtgqPEIU4A='
+	NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
 
 
 Then, in your ``models.py``
@@ -86,7 +86,7 @@ Making new fields can be done by using the build-in NaClFieldMixin:
 	from django.db import models
 	from nacl_encrypted_fields import NaClFieldMixin
 
-	class EncryptedIPAddressField(NaClFieldMixin, models.IPAddressField):
+	class NaClIPAddressField(NaClFieldMixin, models.IPAddressField):
 		pass
 
 

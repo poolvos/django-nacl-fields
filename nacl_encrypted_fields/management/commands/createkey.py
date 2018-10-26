@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         key = NaClWrapper.createKey()
-        output = 'NACL_FIELDS_KEY = \'%s\'' % key
+        output = 'NACL_FIELDS_KEY = %s' % key
 
         filename = options['filename']
         if filename:
