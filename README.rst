@@ -26,26 +26,25 @@ Getting Started
 
 .. code:: shell
 
-	    ~ pip install django-nacl-fields
+	~ pip install django-nacl-fields
 
 
-Create a key to be used for encryption.
+Create a key to be used for encryption:
 
 .. code:: shell
 
-	    ~ python manage.py createkey
-	    # put the following line in your settings.py:
-	    NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
+	~ python manage.py createkey
+	# put the following line in your settings.py:
+	NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
 
-
-In your ``settings.py`` (or append it automatically after generation using the ``-f`` flag)
+In your ``settings.py``:
 
 .. code:: python
 
 	NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
 
 
-Then, in your ``models.py``
+Then, in your ``models.py``:
 
 .. code:: python
 
@@ -57,15 +56,22 @@ Then, in your ``models.py``
 		text_field = NaClTextField()
 
 
-Use your model as normal and your data will be encrypted in the database.
+Use the model as you would normally and the data will be stored encrypted in the database.
 
 **Note:** Encrypted data cannot be used to query or sort. In SQL, these will all look like text fields with random text.
 
+It is also possible to append the fields key to your settings file automatically upon creation, by using the ``-f`` flag:
+
+.. code:: shell
+
+	~ python manage.py createkey -f settings.py
+
+Where ``settings.py`` is the path to your settings file.
 
 Available Fields
 ----------------
 
-Currently build in and unit-tested fields.
+Currently build-in and unit-tested fields.
 
 -  ``NaClCharField``
 -  ``NaClTextField``
@@ -79,7 +85,7 @@ Currently build in and unit-tested fields.
 Encrypt Your Own Fields
 -----------------------
 
-Making new fields can be done by using the build-in NaClFieldMixin:
+Making new fields can be done by using the provided ``NaClFieldMixin``:
 
 .. code:: python
 
