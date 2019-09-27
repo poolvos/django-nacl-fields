@@ -1,2 +1,4 @@
 sphinx
+psycopg2-binary
+flake8
 -e .
