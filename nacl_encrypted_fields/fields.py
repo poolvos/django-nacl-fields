@@ -34,33 +34,27 @@ class NaClFieldMixin(object):
 
         self._crypto_box = crypto_class(key)
 
-        super().__init__(*args, **kwargs)
+        super(NaClFieldMixin, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
         return 'BinaryField'
 
-    @cached_property
-    def validators(self):
-        # Temporarily pretend to be whatever type of field we're mixed in with to
-        # pass validation (needed for IntegerField and subclasses).
-        self.__dict__['_internal_type'] = super().get_internal_type()
-        try:
-            return super().validators
-        finally:
-            del self.__dict__['_internal_type']
-
     def from_db_value(self, value, expression, connection, context):
-        if value is None or value == b'' or not isinstance(value, bytes):
-            return value
+        if value is not None:
+            value = bytes(value)
+            if value != b'':
+                value = self._crypto_box.decrypt(value)
 
-        value = self._crypto_box.decrypt(bytes(value))
-        return super().to_python(force_text(value))
+            return super(NaClFieldMixin, self).to_python(force_text(value))
 
-    def get_db_prep_value(self, value, connection, prepared=False):
-        if value is None or value == b'':
-            return value
+    def get_db_prep_save(self, value, connection):
+        value = super(NaClFieldMixin, self).get_db_prep_save(value, connection)
+        if value is not None:
+            value = force_bytes(value)
+            if value != b'':
+                value = self._crypto_box.encrypt(value)
 
-        return self._crypto_box.encrypt(force_bytes(value))
+            return connection.Database.Binary(value)
 
 
 class NaClBooleanField(NaClFieldMixin, models.BooleanField):
@@ -88,7 +82,12 @@ class NaClFloatField(NaClFieldMixin, models.FloatField):
 
 
 class NaClIntegerField(NaClFieldMixin, models.IntegerField):
-    pass
+    @cached_property
+    def validators(self):
+        # Temporarily pretend to be an IntegerField to pass validation. Changing
+        # `get_internal_type` on the fly to prevent fail in django>=1.7.
+        self.get_internal_type = lambda: 'IntegerField'
+        return models.IntegerField.validators.__get__(self)
 
 
 class NaClTextField(NaClFieldMixin, models.TextField):
