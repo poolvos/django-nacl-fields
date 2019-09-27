@@ -1,31 +1,44 @@
 language: python
 
+services:
+  - postgresql
+
 matrix:
   include:
+    - python: 2.7
+      env: DJANGO_VERSION=1.11
+
     - python: 3.5
-      env: DJANGO_VERSION=2.0.9
+      env: DJANGO_VERSION=1.11
     - python: 3.5
-      env: DJANGO_VERSION=2.1.2
-    - python: 3.5-dev
-      env: DJANGO_VERSION=2.0.9 DEV=true
-    - python: 3.5-dev
-      env: DJANGO_VERSION=2.1.2 DEV=true
+      env: DJANGO_VERSION=2.1
+    - python: 3.5
+      env: DJANGO_VERSION=2.2
+
     - python: 3.6
-      env: DJANGO_VERSION=2.0.9
+      env: DJANGO_VERSION=1.11
     - python: 3.6
-      env: DJANGO_VERSION=2.1.2 LATEST=true
-    - python: 3.6-dev
-      env: DJANGO_VERSION=2.0.9 DEV=true
-    - python: 3.6-dev
-      env: DJANGO_VERSION=2.1.2 DEV=true
+      env: DJANGO_VERSION=2.1
+    - python: 3.6
+      env: DJANGO_VERSION=2.2
+
+    - python: 3.7
+      env: DJANGO_VERSION=1.11
+    - python: 3.7
+      env: DJANGO_VERSION=2.1
+    - python: 3.7
+      env: DJANGO_VERSION=2.2 LATEST=true
   allow_failures:
     - env: DEV=true
 
 # command to install dependencies
 install:
   - pip install -q Django==$DJANGO_VERSION
-  - pip install flake8
+  - pip install '.[testing]'
   - python setup.py -q install
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 # command to run tests
 script:
