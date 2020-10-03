@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'travis_ci_test',
+        'NAME': 'github_actions',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
 
