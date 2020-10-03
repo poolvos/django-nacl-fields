@@ -5,29 +5,26 @@ services:
 
 matrix:
   include:
-    - python: 2.7
-      env: DJANGO_VERSION=1.11
-
-    - python: 3.5
-      env: DJANGO_VERSION=1.11
-    - python: 3.5
-      env: DJANGO_VERSION=2.1
-    - python: 3.5
-      env: DJANGO_VERSION=2.2
-
-    - python: 3.6
-      env: DJANGO_VERSION=1.11
-    - python: 3.6
-      env: DJANGO_VERSION=2.1
     - python: 3.6
       env: DJANGO_VERSION=2.2
+    - python: 3.6
+      env: DJANGO_VERSION=3.0
+    - python: 3.6
+      env: DJANGO_VERSION=3.1
 
     - python: 3.7
-      env: DJANGO_VERSION=1.11
+      env: DJANGO_VERSION=2.2
     - python: 3.7
-      env: DJANGO_VERSION=2.1
+      env: DJANGO_VERSION=3.0
     - python: 3.7
-      env: DJANGO_VERSION=2.2 LATEST=true
+      env: DJANGO_VERSION=3.1
+
+    - python: 3.8
+      env: DJANGO_VERSION=2.2
+    - python: 3.8
+      env: DJANGO_VERSION=3.0
+    - python: 3.8
+      env: DJANGO_VERSION=3.1 LATEST=true
   allow_failures:
     - env: DEV=true
 
