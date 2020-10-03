@@ -1,0 +1,22 @@
+name: Django test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+        django-version: [2.2, '3.0', 3.1]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: python -m pip install --upgrade pip
+    - run: pip install "Django~=${{ matrix.django-version }}"
+    - run: pip install -r requirements.txt
+    - run: python manage.py test
