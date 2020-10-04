@@ -1,0 +1,35 @@
+name: Django test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+        django-version: [2.2, '3.0', 3.1]
+        postgres-version: [9, 10, 11, 12, 13]
+    services:
+      db:
+        image: 'postgres:${{ matrix.postgres-version }}-alpine'
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports:
+          - 5432:5432
+        # based on: https://banagale.com/running-django-tests-in-github-actions.htm
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      # based on: https://github.com/jefftriplett/python-github-actions-matrix-demo/blob/master/.github/workflows/actions.yml
+      - run: pip install 'Django~=${{ matrix.django-version }}'
+      - run: pip install '.[test]'
+      - run: python manage.py test
