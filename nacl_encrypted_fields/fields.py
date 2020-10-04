@@ -39,7 +39,7 @@ class NaClFieldMixin(object):
     def get_internal_type(self):
         return 'BinaryField'
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection, *args, **kwargs):
         if value is not None:
             value = bytes(value)
             if value != b'':
