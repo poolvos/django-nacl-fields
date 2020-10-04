@@ -25,4 +25,6 @@ class TestModel(models.Model):
     integer = NaClIntegerField(null=True, blank=True)
     text = NaClTextField(null=True, blank=True)
 
-    custom_crypto_char = NaClCharField(max_length=255, null=True, crypto_class=TestCryptoWrapper, blank=True)
+    custom_crypto_char = NaClCharField(max_length=255, null=True,
+                                       crypto_class=TestCryptoWrapper,
+                                       blank=True)

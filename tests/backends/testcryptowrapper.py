@@ -11,7 +11,9 @@ class TestCryptoWrapper(CryptoWrapper):
         self.key = bytearray(b85decode(keydata))
 
     def encrypt(self, plaintext):
-        return bytes(bytearray([itr ^ self.key[idx % len(self.key)] for idx, itr in enumerate(bytearray(plaintext))]))
+        return bytes(bytearray([itr ^ self.key[idx % len(self.key)]
+                     for idx, itr in enumerate(bytearray(plaintext))]))
 
     def decrypt(self, ciphertext):
-        return bytes(bytearray([itr ^ self.key[idx % len(self.key)] for idx, itr in enumerate(bytearray(ciphertext))]))
+        return bytes(bytearray([itr ^ self.key[idx % len(self.key)]
+                     for idx, itr in enumerate(bytearray(ciphertext))]))

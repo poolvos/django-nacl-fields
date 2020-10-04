@@ -11,7 +11,10 @@ class TestFields(TestCase):
     def get_db_value(self, field, model_id):
         cursor = connection.cursor()
         cursor.execute(
-            u'select {0} from tests_testmodel where id = {1};'.format(field, model_id)
+            u'select {0} from tests_testmodel where id = {1};'.format(
+                field,
+                model_id
+            )
         )
         return cursor.fetchone()[0]
 
