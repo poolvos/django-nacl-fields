@@ -23,13 +23,13 @@ jobs:
         ports:
           - 5432:5432
         # based on: https://banagale.com/running-django-tests-in-github-actions.htm
-        options: --mount type=tmpfs,destination=/var/lib/postgresql/data --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    # based on: https://github.com/jefftriplett/python-github-actions-matrix-demo/blob/master/.github/workflows/actions.yml
-    - run: pip install 'Django~=${{ matrix.django-version }}'
-    - run: pip install '.[test]'
-    - run: python manage.py test
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      # based on: https://github.com/jefftriplett/python-github-actions-matrix-demo/blob/master/.github/workflows/actions.yml
+      - run: pip install 'Django~=${{ matrix.django-version }}'
+      - run: pip install '.[test]'
+      - run: python manage.py test
