@@ -5,13 +5,8 @@ import nacl.pwhash
 import nacl.utils
 import nacl.secret
 
+from base64 import b85decode, b85encode
 from django.core.exceptions import ImproperlyConfigured
-
-import sys
-if sys.version_info.major >= 3:
-    from base64 import b85decode, b85encode
-else:
-    from nacl_encrypted_fields.utils import b85decode, b85encode
 
 
 class NaClWrapperException(ImproperlyConfigured):
