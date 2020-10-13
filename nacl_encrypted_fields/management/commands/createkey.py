@@ -7,7 +7,9 @@ class Command(BaseCommand):
     help = 'Create a key for NaClWrapper.'
 
     def add_arguments(self, parser):
-        parser.add_argument('-f', '--file', dest='filename', help='Path to settings.py. The key will be written to this file automatically.')
+        parser.add_argument('-f', '--file', dest='filename',
+                            help='Path to settings.py. The key will be '
+                                 'written to this file automatically.')
 
     def handle(self, *args, **options):
         key = NaClWrapper.createKey()

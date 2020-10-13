@@ -11,8 +11,8 @@ class NaClFieldMixin(object):
     """
     NaClFieldMixin will use PyNaCl to encrypt/decrypt data that is
     being put in/out of the database into application Django model fields. This
-    package is largely based on the django-encrypted-fields package, which makes
-    use of the outdated Keyczar library to encrypt fields.
+    package is largely based on the django-encrypted-fields package, which
+    makes use of the outdated Keyczar library to encrypt fields.
 
     The only way to use this mixin is to set the NACL_FIELDS_KEY in settings.py
     to a base64 encoded key that matches the key size of the crypto_class used.
@@ -84,8 +84,9 @@ class NaClFloatField(NaClFieldMixin, models.FloatField):
 class NaClIntegerField(NaClFieldMixin, models.IntegerField):
     @cached_property
     def validators(self):
-        # Temporarily pretend to be an IntegerField to pass validation. Changing
-        # `get_internal_type` on the fly to prevent fail in django>=1.7.
+        # Temporarily pretend to be an IntegerField to pass validation.
+        # Changing `get_internal_type` on the fly to prevent fail in
+        # Django>=1.7.
         self.get_internal_type = lambda: 'IntegerField'
         return models.IntegerField.validators.__get__(self)
 
