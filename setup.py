@@ -51,6 +51,7 @@ setup(
         ' using PyNaCl.'
     ),
     long_description=README,
+    long_description_content_type='text/markdown',
     url='https://github.com/poolvos/django-nacl-fields',
     author='Poolvos B.V.',
     author_email='info@poolvos.nl',
