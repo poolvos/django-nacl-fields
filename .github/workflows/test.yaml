@@ -1,4 +1,4 @@
-name: Django test
+name: test
 
 on:
   push:
