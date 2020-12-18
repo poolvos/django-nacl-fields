@@ -21,8 +21,8 @@ from nacl_encrypted_fields import __version__
 # -- Project information -----------------------------------------------------
 
 project = u'django-nacl-fields'
-copyright = u'2018, Poolvos B.V.'
-author = u'Poolvos B.V.'
+copyright = u'2020, Warpnet B.V.'
+author = u'Warpnet B.V.'
 
 # The short X.Y version
 version = __version__
@@ -132,7 +132,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'django-nacl-fields.tex', u'django-nacl-fields Documentation',
-     u'Poolvos B.V.', 'manual'),
+     u'Warpnet B.V.', 'manual'),
 ]
 
 

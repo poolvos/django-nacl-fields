@@ -52,9 +52,9 @@ setup(
     ),
     long_description=README,
     long_description_content_type='text/markdown',
-    url='https://github.com/poolvos/django-nacl-fields',
-    author='Poolvos B.V.',
-    author_email='info@poolvos.nl',
+    url='https://github.com/warpnet/django-nacl-fields',
+    author='Warpnet B.V.',
+    author_email='info@warpnet.nl',
     classifiers=[
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
