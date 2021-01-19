@@ -14,8 +14,18 @@ This is a collection of Django Model Field classes that are encrypted using PyNa
 
 ## Getting Started
 
+Install `django-nacl-fields`:
 ```sh
 pip install django-nacl-fields
+```
+
+Add `nacl_encrypted_fields` to your `INSTALLED_APPS`:
+```python
+INSTALLED_APPS = [
+    ...
+    'nacl_encrypted_fields'
+    ...
+]
 ```
 
 Create a key to be used for encryption:
@@ -33,7 +43,7 @@ NACL_FIELDS_KEY = b'p1Et2Rb@;^BYdo`ZRFi!Hc-MXu(^|bVqA-FGqffM'
 Then, in your `models.py`:
 ```python
 from django.db import models
-from nacl_encrypted_fields import NaClTextField
+from nacl_encrypted_fields.fields import NaClTextField
 
 
 class MyModel(models.Model):
